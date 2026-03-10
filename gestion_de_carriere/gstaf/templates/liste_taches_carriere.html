@@ -1,0 +1,9 @@
+<h1>Tâches de carrière</h1>
+<a href="{% url 'ajouter_tache_carriere' %}">+ Ajouter une tâche</a>
+<ul>
+    {% for t in taches %}
+        <li>{{ t.get_type_tache_display }} : {{ t.titre }} ({{ t.employe.nom }}) - {{ t.date }}</li>
+    {% empty %}
+        <li>Aucune tâche enregistrée.</li>
+    {% endfor %}
+</ul>

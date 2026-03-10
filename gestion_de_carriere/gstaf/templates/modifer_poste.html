@@ -1,0 +1,7 @@
+<h1>Modifier un poste</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Enregistrer</button>
+</form>
+<a href="{% url 'liste_postes' %}">Annuler</a>

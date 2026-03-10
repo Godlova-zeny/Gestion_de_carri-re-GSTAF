@@ -1,0 +1,7 @@
+<h1>Supprimer un poste</h1>
+<p>Voulez-vous vraiment supprimer le poste : <strong>{{ poste.titre }}</strong> ?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Oui, supprimer</button>
+</form>
+<a href="{% url 'liste_postes' %}">Annuler</a>

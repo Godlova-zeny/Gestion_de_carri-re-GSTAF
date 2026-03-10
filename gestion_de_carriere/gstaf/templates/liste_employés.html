@@ -1,0 +1,24 @@
+<h1>Liste des employés</h1>
+<ul>
+    {% for e in employes %}
+        <li>{{ e.nom }} {{ e.prenom }} - {{ e.poste }}</li>
+    {% empty %}
+        <li>Aucun employé enregistré.</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'ajouter_employe' %}">Ajouter un employé</a>
+<h1>Liste des employés</h1>
+<ul>
+    {% for e in employes %}
+        <li>
+            {{ e.nom }} - {{ e.poste }}
+            <ul>
+                {% for t in e.taches_carriere.all %}
+                    <li>{{ t.get_type_tache_display }} : {{ t.titre }} ({{ t.date }})</li>
+                {% empty %}
+                    <li>Aucune tâche de carrière</li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+</ul>

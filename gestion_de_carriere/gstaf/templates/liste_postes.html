@@ -1,0 +1,30 @@
+# Ajouter un poste
+def ajouter_poste(request):
+    if request.method == 'POST':
+        form = PosteForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('liste_postes')
+    else:
+        form = PosteForm()
+    return render(request, 'gstaf/ajouter_poste.html', {'form': form})
+
+# Modifier un poste
+def modifier_poste(request, pk):
+    poste = get_object_or_404(Poste, pk=pk)
+    if request.method == 'POST':
+        form = PosteForm(request.POST, instance=poste)
+        if form.is_valid():
+            form.save()
+            return redirect('liste_postes')
+    else:
+        form = PosteForm(instance=poste)
+    return render(request, 'gstaf/modifier_poste.html', {'form': form})
+
+# Supprimer un poste
+def supprimer_poste(request, pk):
+    poste = get_object_or_404(Poste, pk=pk)
+    if request.method == 'POST':
+        poste.delete()
+        return redirect('liste_postes')
+    return render(request, 'gstaf/supprimer_poste.html', {'poste': poste})
